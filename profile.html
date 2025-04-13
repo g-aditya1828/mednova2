@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile Page</title>
+    <style>
+      /* General page styling */
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #e6f7ff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 900px;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .profile-box {
+        padding: 20px;
+        border-radius: 15px;
+        background: #f8f8f8;
+        box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .person-icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 220px;
+        height: 220px;
+        border: 6px solid transparent;
+        border-radius: 50%;
+        background: linear-gradient(white, white) padding-box,
+          linear-gradient(135deg, #74ebd5, #acb6e5) border-box;
+        margin: 0 auto 30px;
+        box-shadow: 0 0 25px rgba(116, 235, 213, 0.6),
+          0 0 50px rgba(172, 182, 229, 0.6);
+      }
+
+      .person-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .person-icon .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: gray;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      .person-icon .rectangle {
+        width: 70px;
+        height: 120px;
+        background-color: gray;
+        margin-top: -10px;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .male .circle,
+      .male .rectangle {
+        background-color: #007bff;
+      }
+      .female .circle,
+      .female .rectangle {
+        background-color: #ff1493;
+      }
+
+      p {
+        color: #555;
+        font-size: 1rem;
+        margin: 15px 0;
+      }
+
+      input[type="file"],
+      input[type="text"],
+      select {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Profile</h1>
+      <div class="profile-box">
+        <div class="person-icon-container" id="personIcon">
+          <div class="person-icon">
+            <div class="circle" id="profilePic"></div>
+            <div class="rectangle"></div>
+          </div>
+        </div>
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Address:</strong> <span id="userAddress"></span></p>
+        <p><strong>Occupation:</strong> <span id="userOccupation"></span></p>
+        <p><strong>Gender:</strong> <span id="userGender"></span></p>
+        
+        <!-- Profile Picture Upload Form -->
+        <form id="uploadForm" enctype="multipart/form-data">
+          <input type="file" id="profilePicture" name="profilePicture" />
+          <button type="submit">Upload Picture</button>
+        </form>
+
+        <!-- Profile Update Form -->
+        <form id="profileForm">
+          <input type="text" id="newPhone" placeholder="Enter new phone number" />
+          <input type="text" id="newAddress" placeholder="Enter new address" />
+          <input type="text" id="newOccupation" placeholder="Enter new occupation" />
+          <select id="newGender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          <button type="submit">Update Information</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        alert('Please sign in first.');
+        window.location.href = 'signin.html';
+      }
+
+      fetch('http://localhost:5000/api/profile', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch profile');
+          }
+          return res.json();
+        })
+        .then((user) => {
+          document.getElementById("userName").innerText = user.fullName;
+          document.getElementById("userPhone").innerText = user.phone || "Not provided";
+          document.getElementById("userEmail").innerText = user.email;
+          document.getElementById("userAddress").innerText = user.address || "Not provided";
+          document.getElementById("userOccupation").innerText = user.occupation || "Not provided";
+          document.getElementById("userGender").innerText = user.gender || "Not specified";
+
+          const personIcon = document.getElementById("personIcon");
+          const profilePic = document.getElementById("profilePic");
+
+          // If user has a profile picture, update the icon
+          if (user.profilePicture) {
+            profilePic.style.backgroundImage = `url(http://localhost:5000${user.profilePicture})`;
+            profilePic.style.backgroundSize = 'cover';
+          }
+
+          if (user.gender?.toLowerCase() === "male") {
+            personIcon.classList.add("male");
+          } else if (user.gender?.toLowerCase() === "female") {
+            personIcon.classList.add("female");
+          } else {
+            personIcon.classList.add("other");
+          }
+        })
+        .catch((err) => {
+          console.error("Profile fetch error:", err);
+          alert("Error loading profile. Please sign in again.");
+          window.location.href = 'signin.html';
+        });
+
+      // Handle profile picture upload
+      const uploadForm = document.getElementById('uploadForm');
+      uploadForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        const fileInput = document.getElementById('profilePicture');
+        formData.append('profilePicture', fileInput.files[0]);
+
+        fetch('http://localhost:5000/api/uploadProfilePicture', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.profilePictureUrl) {
+              // Update the profile picture on the page
+              const profilePic = document.getElementById("profilePic");
+              profilePic.style.backgroundImage = `url(http://localhost:5000${data.profilePictureUrl})`;
+              profilePic.style.backgroundSize = 'cover';
+              alert('Profile picture updated successfully!');
+            } else {
+              alert('Failed to upload picture.');
+            }
+          })
+          .catch((err) => {
+            console.error('Error uploading profile picture:', err);
+            alert('Error uploading profile picture.');
+          });
+      });
+
+      // Handle profile info update
+      const profileForm = document.getElementById('profileForm');
+      profileForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const newPhone = document.getElementById('newPhone').value;
+        const newAddress = document.getElementById('newAddress').value;
+        const newOccupation = document.getElementById('newOccupation').value;
+        const newGender = document.getElementById('newGender').value;
+
+        const updatedData = {
+          phone: newPhone,
+          address: newAddress,
+          occupation: newOccupation,
+          gender: newGender,
+        };
+
+        fetch('http://localhost:5000/api/profile/update', {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            alert('Profile updated successfully!');
+            // Update the UI with the new data
+            document.getElementById('userPhone').innerText = newPhone || 'Not provided';
+            document.getElementById('userAddress').innerText = newAddress || 'Not provided';
+            document.getElementById('userOccupation').innerText = newOccupation || 'Not provided';
+            document.getElementById('userGender').innerText = newGender || 'Not specified';
+          })
+          .catch((err) => {
+            console.error('Error updating profile:', err);
+            alert('Failed to update profile.');
+          });
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+

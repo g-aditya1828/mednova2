@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calm Living</title>
+    <link rel="stylesheet" href="index_style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="WhatsApp Image 2025-04-12 at 15.23.27_2f1ebbc2.jpg" />
+        <h1>MedNova</h1>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">My Health</a>
+        <a href="#">Resources</a>
+        <a href="myAccount.html">My Account</a>
+        <button id="themeToggle" aria-label="Toggle Theme">🌙</button>
+      </div>
+    </nav>
+
+    <main>
+      <section class="mindfulness">
+        <h2>Mindfulness & Relaxation</h2>
+
+        <div class="guided-meditations">
+          <h3>Guided Meditations</h3>
+          <div class="meditation-cards">
+            <div class="meditation-card">
+              <div class="icon">⏰</div>
+
+              <h4>
+                <a href="morning_calm.html" class="morning-guide"
+                  >Morning Calm</a
+                >
+              </h4>
+
+              <p>10 min</p>
+            </div>
+            <div class="meditation-card">
+              <div class="icon">❤️</div>
+              <h4><a href="stress_relief.html">Stress Relief</a></h4>
+              <p>15 min</p>
+            </div>
+            <div class="meditation-card">
+              <div class="icon">🌙</div>
+              <h4><a href="deep_sleep.html">Deep Sleep</a></h4>
+              <p>30 min</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="calm-music">
+          <h3>Calm Music</h3>
+          <div class="music-player">
+            <div class="player-info">
+              <h4>Forest Sounds</h4>
+              <p>Nature Collection</p>
+            </div>
+            <div class="player-controls">
+              <button class="main-play-btn">▶</button>
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
+              <div class="time">
+                <span>0:33</span>
+                <span>1:45</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="music-library">
+          <h3>Music Library</h3>
+          <div class="tracks">
+            <div class="track">
+              <button class="play-btn" data-track="ocean">▶</button>
+              <span class="track-name">Ocean Waves</span>
+              <span class="track-duration">1:30:00</span>
+              <audio id="audio-ocean" src="music/ocean-waves.mp3"></audio>
+            </div>
+            <div class="track">
+              <button class="play-btn" data-track="rain">▶</button>
+              <span class="track-name">Rainfall</span>
+              <span class="track-duration">1:00:00</span>
+              <audio id="audio-rain" src="music/forest-rain.mp3"></audio>
+            </div>
+            <div class="track">
+              <button class="play-btn" data-track="forest">▶</button>
+              <span class="track-name">Forest Sounds</span>
+              <span class="track-duration">1:15:00</span>
+              <audio id="audio-forest" src="music/forest-sound.mp3"></audio>
+            </div>
+            <div class="track">
+              <button class="play-btn" data-track="piano">▶</button>
+              <span class="track-name">Gentle Piano</span>
+              <span class="track-duration">45:00</span>
+              <audio id="audio-piano" src="music/gentle-piano.mp3"></audio>
+            </div>
+          </div>
+        </div>
+        <div class="game-container">
+          <h2>🎮 Ready to Play Bubble Pop?</h2>
+          <p>Challenge yourself and pop as many bubbles as you can!</p>
+          <button id="start-game-btn">
+            <a href="game.html">Let's PLay</a>
+          </button>
+        </div>
+      </section>
+
+      <aside class="professional-advice">
+        <div class="advice-card">
+          <h3>Need professional advice?</h3>
+          <button class="consult-btn">Book Appointment</button>
+        </div>
+
+        <div class="medication-assistant">
+          <h3>Medication Assistant</h3>
+          <iframe
+            src="https://www.chatbase.co/chatbot-iframe/dXB2kP_QqrC_3jdJdk-DZ"
+            width="100%"
+            style="height: 100%; min-height: 700px"
+            frameborder="0"
+          ></iframe>
+        </div>
+
+        <div class="calendar-streak-wrapper">
+          <div class="calendar">
+            <h3>April 2025</h3>
+            <div class="calendar-grid" id="calendar-days"></div>
+          </div>
+          <div class="streak-tracker">
+            <h3>Streak Tracker</h3>
+            <div class="streak-info">
+              <p>🔥 Current Streak: <span id="current-streak">0</span> days</p>
+              <p>🏆 Longest Streak: <span id="longest-streak">0</span> days</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="activity-tracker">
+        <h2>Activity Tracker</h2>
+        <div class="metrics">
+          <div class="metric-card">
+            <h4>Daily Steps</h4>
+            <div class="metric-value">8,734</div>
+            <div class="metric-target">Target: 10,000</div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 87.34%"></div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <h4>Sleep</h4>
+            <div class="metric-value">7.8 hrs</div>
+            <div class="metric-target">Target: 8 hrs</div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 97.5%"></div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <h4>Heart Rate</h4>
+            <div class="metric-value">65 bpm</div>
+            <div class="metric-target">Target: Resting</div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weekly-activity">
+          <h3>Weekly Activity</h3>
+          <div class="chart-container">
+            <canvas id="activityChart"></canvas>
+          </div>
+          <div class="activity-summary">
+            <div class="trend">
+              <span class="trend-icon">📈</span>
+              <div class="trend-text">
+                <h4>Activity Trend</h4>
+                <p>15% increase this week</p>
+              </div>
+            </div>
+            <div class="goal">
+              <span class="goal-icon">🎯</span>
+              <div class="goal-text">
+                <h4>Weekly Goal</h4>
+                <p>75% complete - keep going!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script>
+      // Profile logic (using your existing profile.js script)
+      const profileBtn = document.getElementById("profileBtn");
+      const profileContainer = document.getElementById("profileContainer");
+
+      profileBtn.addEventListener("click", () => {
+        profileContainer.style.display =
+          profileContainer.style.display === "none" ? "block" : "none";
+      });
+
+      // Fetch User Profile Data (after login)
+      async function fetchUserProfile() {
+        try {
+          const response = await fetch("http://localhost:5000/api/user", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            document.getElementById("profile-name").textContent = data.username;
+            document.getElementById("profile-email").textContent = data.email;
+          } else {
+            console.error("Failed to fetch user profile");
+          }
+        } catch (error) {
+          console.error("Error fetching profile:", error);
+        }
+      }
+
+      // Fetch profile when the page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("authToken")) {
+          fetchUserProfile();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="health-chatbot">
+      <div id="chat-button">💬</div>
+      <div id="chat-window" style="display: none">
+        <div id="chat-header">Health Chatbot 🤖</div>
+        <div id="chat-body">
+          <div class="bot-message">
+            Hi! I'm your health assistant. I can answer basic health-related
+            questions. ⚠️ This is not medical advice.
+          </div>
+        </div>
+        <div id="chat-input">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Ask a health question..."
+          />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Styles -->
+    <style>
+      #health-chatbot {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-family: sans-serif;
+        z-index: 9999;
+      }
+
+      #chat-button {
+        background: #4caf50;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #chat-window {
+        width: 300px;
+        height: 400px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+
+      #chat-header {
+        background: #4caf50;
+        color: white;
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      #chat-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+      }
+
+      #chat-input {
+        display: flex;
+        border-top: 1px solid #ccc;
+      }
+
+      #chat-input input {
+        flex: 1;
+        border: none;
+        padding: 10px;
+        outline: none;
+      }
+
+      #chat-input button {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 0 16px;
+        cursor: pointer;
+      }
+
+      .user-message,
+      .bot-message {
+        margin: 6px 0;
+        padding: 8px 12px;
+        border-radius: 16px;
+        max-width: 80%;
+        line-height: 1.4;
+      }
+
+      .user-message {
+        background: #e0f7fa;
+        align-self: flex-end;
+        text-align: right;
+      }
+
+      .bot-message {
+        background: #f1f1f1;
+        align-self: flex-start;
+      }
+    </style>
+
+    <!-- Script -->
+    <script>
+      const chatButton = document.getElementById("chat-button");
+      const chatWindow = document.getElementById("chat-window");
+      const chatBody = document.getElementById("chat-body");
+      const userInput = document.getElementById("user-input");
+
+      const responses = {
+        "what is a fever":
+          "A fever is a temporary increase in your body temperature, often due to an illness.",
+        "how to treat a cold":
+          "Rest, fluids, and over-the-counter medications like decongestants can help relieve cold symptoms.",
+        "what are covid symptoms":
+          "Common symptoms include fever, cough, fatigue, and loss of taste or smell.",
+        "how much water should I drink":
+          "It's generally recommended to drink about 8 cups (2 liters) of water a day.",
+        "can i take paracetamol":
+          "Paracetamol is generally safe for pain and fever, but follow the dosage instructions or consult a doctor.",
+      };
+
+      chatButton.addEventListener("click", () => {
+        chatWindow.style.display =
+          chatWindow.style.display === "none" ? "flex" : "none";
+      });
+
+      function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        // Add user message
+        chatBody.innerHTML += `<div class="user-message">${message}</div>`;
+
+        // Process bot response
+        const lower = message.toLowerCase();
+        let reply =
+          "I'm not sure about that. Please consult a healthcare professional.";
+        for (let key in responses) {
+          if (lower.includes(key)) {
+            reply = responses[key];
+            break;
+          }
+        }
+
+        // Add bot message
+        setTimeout(() => {
+          chatBody.innerHTML += `<div class="bot-message">${reply}</div>`;
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 500);
+
+        userInput.value = "";
+      }
+    </script>
+  </body>
+</html>

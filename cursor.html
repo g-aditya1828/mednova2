@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtle Soft Wavy Effect</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #222222; /* Dark background for contrast */
+        height: 100vh;
+        cursor: none; /* Hide the default cursor */
+        overflow: hidden;
+      }
+
+      .wave {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(0, 191, 255, 0.5); /* Soft light blue color */
+        opacity: 0;
+        pointer-events: none;
+        animation: waveAnimation 2s ease-out forwards;
+      }
+
+      @keyframes waveAnimation {
+        0% {
+          transform: scale(0) translate(0, 0);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scale(1) translate(var(--x), var(--y));
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1.2) translate(var(--x), var(--y));
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Function to create a soft and subtle wave effect
+      function createWave(x, y) {
+        const waveCount = 5; // Reduced number of waves for subtle effect
+
+        for (let i = 0; i < waveCount; i++) {
+          const wave = document.createElement("div");
+          wave.classList.add("wave");
+
+          // Randomly set the direction of the wave
+          const angle = Math.random() * 360; // Random angle for wave direction
+          const distance = Math.random() * 40 + 20; // Small distance for subtle movement
+          const radian = (angle * Math.PI) / 180;
+          const xMovement = Math.cos(radian) * distance;
+          const yMovement = Math.sin(radian) * distance;
+
+          // Set custom properties to control movement direction
+          wave.style.setProperty("--x", `${xMovement}px`);
+          wave.style.setProperty("--y", `${yMovement}px`);
+
+          wave.style.left = `${x - 10}px`; // Offset the wave position to cursor
+          wave.style.top = `${y - 10}px`; // Offset the wave position to cursor
+
+          document.body.appendChild(wave);
+
+          // Remove the wave after animation completes
+          setTimeout(() => {
+            wave.remove();
+          }, 2000); // Duration of the wave animation
+        }
+      }
+
+      // Listen for mouse movement to create subtle waves
+      document.addEventListener("mousemove", (e) => {
+        createWave(e.pageX, e.pageY);
+      });
+    </script>
+  </body>
+</html>

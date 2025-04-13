@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile Page</title>
+    <style>
+      /* General page styling */
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #e6f7ff; /* Light blue background */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Profile container */
+      .container {
+        width: 80%; /* Covers more of the page */
+        max-width: 900px;
+        padding: 30px;
+        background: #ffffff; /* Smooth white box */
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Smooth shadow */
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      /* Profile box */
+      .profile-box {
+        padding: 20px;
+        border-radius: 15px;
+        background: #f8f8f8;
+        box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Glowing person icon with larger size */
+      .person-icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 220px;
+        height: 220px;
+        border: 6px solid transparent;
+        border-radius: 50%;
+        background: linear-gradient(white, white) padding-box,
+          linear-gradient(135deg, #74ebd5, #acb6e5) border-box;
+        margin: 0 auto 30px;
+        box-shadow: 0 0 25px rgba(116, 235, 213, 0.6),
+          0 0 50px rgba(172, 182, 229, 0.6);
+      }
+
+      /* The icon design (head and body) */
+      .person-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .person-icon .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: gray; /* Default color for others */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      .person-icon .rectangle {
+        width: 70px;
+        height: 120px;
+        background-color: gray; /* Default color for others */
+        margin-top: -10px;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Gender-based colors */
+      .male .circle,
+      .male .rectangle {
+        background-color: #007bff; /* Blue for male */
+      }
+      .female .circle,
+      .female .rectangle {
+        background-color: #ff1493; /* Pink for female */
+      }
+
+      /* Text and spacing for profile details */
+      p {
+        color: #555;
+        font-size: 1rem;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Profile</h1>
+      <div class="profile-box">
+        <div class="person-icon-container" id="personIcon">
+          <div class="person-icon">
+            <div class="circle"></div>
+            <div class="rectangle"></div>
+          </div>
+        </div>
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Address:</strong> <span id="userAddress"></span></p>
+        <p><strong>Occupation:</strong> <span id="userOccupation"></span></p>
+        <p><strong>Gender:</strong> <span id="userGender"></span></p>
+      </div>
+    </div>
+
+    <script>
+      // Simulated logged-in user data
+      const loggedInUser = {
+        name: "Akanksha Sharma",
+        phone: "9876543210",
+        email: "akanksha@example.com",
+        address: "Patiala, Punjab, India",
+        occupation: "Software Engineer",
+        gender: "Female",
+      };
+
+      // Populate profile with user details
+      document.getElementById("userName").innerText = loggedInUser.name;
+      document.getElementById("userPhone").innerText = loggedInUser.phone;
+      document.getElementById("userEmail").innerText = loggedInUser.email;
+      document.getElementById("userAddress").innerText = loggedInUser.address;
+      document.getElementById("userOccupation").innerText =
+        loggedInUser.occupation;
+      document.getElementById("userGender").innerText = loggedInUser.gender;
+
+      // Update the person icon based on gender
+      const personIcon = document.getElementById("personIcon");
+      if (loggedInUser.gender.toLowerCase() === "male") {
+        personIcon.classList.add("male");
+      } else if (loggedInUser.gender.toLowerCase() === "female") {
+        personIcon.classList.add("female");
+      } else {
+        personIcon.classList.add("other");
+      }
+    </script>
+  </body>
+</html>

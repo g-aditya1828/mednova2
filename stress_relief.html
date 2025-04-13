@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stress Relief One-Page Site</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, #e0f7fa, #fce4ec);
+        margin: 0;
+        padding: 2rem;
+        color: #2c3e50;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background-color: #ffffffcc;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: #34495e;
+      }
+
+      p,
+      ul {
+        line-height: 1.8;
+      }
+
+      .game-box {
+        text-align: center;
+        background-color: #f3faff;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #affirmation {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        color: #2c3e50;
+        font-style: italic;
+      }
+
+      .breathing-game {
+        margin-top: 2rem;
+      }
+
+      .circle {
+        width: 100px;
+        height: 100px;
+        margin: 2rem auto;
+        border-radius: 50%;
+        background-color: #a3d5f7;
+        animation: breathe 8s infinite;
+      }
+
+      @keyframes breathe {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #7f8c8d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Your Stress Relief Zone</h1>
+      <p>
+        This space is designed to help you unwind, breathe deeply, and center
+        yourself. Follow a few simple tips and try out the calming games below.
+      </p>
+      <ul>
+        <li>
+          Take a break and breathe deeply—inhale for 4 seconds, exhale for 4
+          seconds.
+        </li>
+        <li>Drink a glass of water to refresh your body and mind.</li>
+        <li>Stretch gently to release any tension in your body.</li>
+        <li>Unplug for a few minutes: step away from screens if you can.</li>
+        <li>
+          Practice gratitude—think of one thing you’re thankful for right now.
+        </li>
+      </ul>
+    </div>
+
+    <div class="container game-box">
+      <h2>Affirmation Game</h2>
+      <p>Click below to receive a calming affirmation.</p>
+      <button onclick="showAffirmation()">Get Affirmation</button>
+      <div id="affirmation"></div>
+    </div>
+
+    <div class="container game-box breathing-game">
+      <h2>Breathing Bubble</h2>
+      <p>
+        Follow the animation: breathe in as it grows, breathe out as it shrinks.
+      </p>
+      <div class="circle"></div>
+    </div>
+
+    <div class="container footer">
+      <p>
+        You deserve a moment of peace. Take a deep breath and carry on with calm
+        and confidence.
+      </p>
+    </div>
+
+    <script>
+      const affirmations = [
+        "You are grounded, calm, and in control.",
+        "Breathe in peace, breathe out tension.",
+        "Everything you need is already within you.",
+        "You are doing your best, and that is enough.",
+        "This moment is yours to be still and centered.",
+      ];
+
+      function showAffirmation() {
+        const index = Math.floor(Math.random() * affirmations.length);
+        document.getElementById("affirmation").textContent =
+          affirmations[index];
+      }
+    </script>
+  </body>
+</html>

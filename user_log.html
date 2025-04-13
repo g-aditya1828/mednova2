@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up & Sign In</title>
+    <link rel="stylesheet" href="user_log.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="star">*</span> LogPG
+            </div>
+        </header>
+        <div class="form-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="signin">Sign In</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signin-form" class="form active">
+                <h1>Sign In</h1>
+                <p class="subtitle">Welcome back! Please enter your details.</p>
+                <form id="signin-form">
+                    <div class="form-group">
+                        <label for="signin-email">Email</label>
+                        <input type="email" id="signin-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">Password</label>
+                        <input type="password" id="signin-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup-form" class="form">
+                <h1>Sign Up</h1>
+                <p class="subtitle">Create an account to get started.</p>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms"> I accept the <a href="#" class="terms-link">terms and conditions</a>.
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JS File -->
+    <script src="user_log.js"></script>
+</body>
+</html>
+

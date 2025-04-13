@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Back-and-Forth Button</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom right, lightblue, lightpurple);
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 20px 70px; /* Increased size */
+        font-size: 22px; /* Larger text */
+        color: white;
+        background: linear-gradient(to right, blue, purple);
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+
+      @keyframes backAndForth {
+        0% {
+          left: 0%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      button {
+        animation: backAndForth 6s ease-in-out infinite alternate;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button>Click Me</button>
+    </div>
+  </body>
+</html>
