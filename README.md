@@ -32,7 +32,7 @@ Tech Stack<br/>
 Setup Instructions<br/>
 Clone the repo:<br/>
 
-git clone https://github.com/yourusername/mednova.git<br/>
+git clone https://github.com/g-aditya1828/mednova.git<br/>
 Open the project folder and launch index.html in your browser.<br/>
 For Firebase and chatbot setup, follow the instructions in the /docs/setup.md file (coming soon).<br/>
 Live Demo<br/>
